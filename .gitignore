@@ -46,7 +46,7 @@ Thumbs.db
 desktop.ini
 
 # Logs
-logs/*.log
+logs/
 
 # Node
 node_modules/
