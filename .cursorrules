@@ -1,0 +1,45 @@
+﻿# REGRAS DO PROJETO DinDinVani&Nani
+
+## STACK
+- Flutter 3.x + Dart 3.x
+- Riverpod 2.x para state management
+- go_router para navegacao
+- fl_chart para graficos
+- Supabase (PostgreSQL + RLS + Realtime)
+- Firebase FCM para notificacoes
+
+## ARQUITETURA CLEAN
+- lib/core         -> constants, extensions, errors, theme
+- lib/data         -> models, datasources, repositories
+- lib/domain       -> entities, use_cases, repository interfaces
+- lib/presentation -> screens, widgets, providers
+
+## FILOSOFIA FINANCEIRA (NUNCA VIOLAR)
+1. OD - Orcamento Defasado: renda mes M define orcamento M+2
+2. CF - Caixinha de Fatura: compra no cartao reserva valor imediato
+3. CPI - Caixinha de Parcela Integral: parcelado = total guardado no ato
+4. REGRA DE OURO: nunca somar a mesma despesa duas vezes
+
+## TABELAS PRINCIPAIS
+families, users, accounts, credit_cards, invoices, invoice_reserves,
+transactions, recurring_transactions, piggy_banks, piggy_bank_contributions,
+piggy_bank_reservations, cpi_installment_payments, budgets, monthly_budgets,
+family_goals, categories, family_settings, audit_log, attachments
+
+## SEGURANCA
+- RLS obrigatorio em TODAS as tabelas
+- Usuario so ve dados da propria familia
+- NUNCA commitar .env no Git
+- Validar inputs no client E no server
+
+## PADROES DE CODIGO
+- Nomes em ingles para codigo, portugues para UI
+- Use const sempre que possivel
+- Prefira composition sobre inheritance
+- Tratamento de erro com Result ou Either
+- Async/await sempre, evitar .then()
+
+## TESTES
+- Unit tests para use_cases e repositories
+- Widget tests para telas criticas
+- Integration tests para fluxos completos

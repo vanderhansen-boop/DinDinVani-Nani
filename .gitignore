@@ -1,0 +1,61 @@
+﻿# Flutter / Dart
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/build/
+app/.fvm/
+app/pubspec.lock
+
+# Senhas e secrets
+app/.env
+app/.env.local
+app/.env.production
+*.env
+
+# Firebase
+app/android/app/google-services.json
+app/ios/Runner/GoogleService-Info.plist
+app/lib/firebase_options.dart
+
+# Android
+app/android/.gradle/
+app/android/local.properties
+app/android/key.properties
+*.jks
+*.keystore
+
+# iOS
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/Flutter.framework
+app/ios/Flutter/Flutter.podspec
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# IDEs
+.idea/
+.vscode/settings.json
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/*.log
+
+# Node
+node_modules/
+# === Reforco script 29b ===
+backups/
+*.bak
+*.bak_*
+*.backup
+.env.backup
+**/.env.backup
+*.local.example
+MEMORIA_PROJETO.md.bak*
