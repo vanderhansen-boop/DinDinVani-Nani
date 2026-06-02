@@ -154,3 +154,10 @@ Script 30 - build_android
 - iOS GoogleService-Info.plist: pendente (so no macOS — nao bloqueia)
 - NOTA: raiz REAL do projeto = Z:\AppFinancas (nao C:\APP_Finanças)
 - PROXIMO: Script 29 — GitHub Actions (CI/CD + keep-alive Supabase)
+---
+### Sessao 2026-06-02 18:44
+- [x] Script 29 — setup_github_actions (CI/CD + keep-alive)
+- [x] Git inicializado, .gitignore reforcado
+- [x] Arquivos sensiveis (.env.backup) e lixo (backups/, logs/) EXCLUIDOS do versionamento
+- [x] Commit inicial: 776c84c "chore: initial commit"
+- Proximo: push para GitHub + Script 30 (build_android)
