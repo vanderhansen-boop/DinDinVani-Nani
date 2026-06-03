@@ -2,6 +2,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/user_profile_model.dart';
 import '../../models/family_settings_model.dart';
+import '../../../core/utils/family_guard.dart';
 
 abstract class ProfileRemoteDatasource {
   Future<UserProfileModel>    getCurrentProfile();
@@ -46,6 +47,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
 
   @override
   Future<UserProfileModel?> getPartnerProfile(String familyId) async {
+    if (!isValidFamilyId(familyId)) return null;
     final data = await _client
         .from('users')
         .select()
@@ -57,6 +59,9 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
 
   @override
   Future<FamilySettingsModel> getFamilySettings(String familyId) async {
+    if (!isValidFamilyId(familyId)) {
+      throw StateError('family_id vazio em getFamilySettings');
+    }
     final data = await _client
         .from('family_settings')
         .select()
@@ -85,6 +90,9 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
 
   @override
   Future<String> exportBackupJson(String familyId) async {
+    if (!isValidFamilyId(familyId)) {
+      throw StateError('family_id vazio em exportBackupJson');
+    }
     // Exporta todas as tabelas relevantes da familia
     final results = await Future.wait([
       _client.from('accounts')

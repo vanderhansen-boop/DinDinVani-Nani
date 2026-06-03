@@ -18,8 +18,8 @@ dependencies:
   supabase_flutter: ^2.8.0
 
   # Estado - Riverpod
-  flutter_riverpod: ^2.6.1
-  riverpod_annotation: ^2.6.1
+  flutter_riverpod: ^3.3.1
+  riverpod_annotation: ^4.0.2
 
   # Navegacao
   go_router: ^14.6.2
@@ -45,8 +45,8 @@ dependencies:
   path_provider: ^2.1.5
 
   # Models
-  freezed_annotation: ^2.4.4
-  json_annotation: ^4.9.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
   equatable: ^2.0.7
 
   # Clean Architecture
@@ -63,12 +63,12 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
   # Code generation
-  build_runner: ^2.4.13
-  freezed: ^2.5.7
-  json_serializable: ^6.9.0
-  riverpod_generator: ^2.6.3
-  custom_lint: ^0.7.0
-  riverpod_lint: ^2.6.3
+  build_runner: ^2.15.0
+  freezed: ^3.2.5
+  json_serializable: ^6.14.0
+  riverpod_generator: ^4.0.3
+  # custom_lint: ^0.7.0   # DESABILITADO: causava conflito analyzer_plugin
+  # riverpod_lint: ^2.6.3   # DESABILITADO: causava conflito analyzer_plugin
 
 flutter:
   uses-material-design: true
@@ -77,3 +77,5 @@ flutter:
     - .env
     - assets/images/
     - assets/icons/
+
+

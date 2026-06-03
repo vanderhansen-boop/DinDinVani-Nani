@@ -55,7 +55,7 @@ class PiggyBankCard extends StatelessWidget {
                     width: 44,
                     height: 44,
                     decoration: BoxDecoration(
-                      color: accent.withOpacity(0.1),
+                      color: accent.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(child: Text(piggyBank.emoji, style: const TextStyle(fontSize: 22))),

@@ -19,12 +19,13 @@ class CreateInstallmentPurchaseUseCase {
   Future<void> call({
     required String familyId,
     required String userId,
+    required String accountId,
     required String creditCardId,
     required String description,
     required double totalAmount,
     required int installments,
     required DateTime purchaseDate,
-    String? categoryId,
+    required String categoryId,
   }) async {
     if (totalAmount <= 0) {
       throw const ValidationFailure('Valor total deve ser maior que zero');
@@ -41,32 +42,32 @@ class CreateInstallmentPurchaseUseCase {
       id: '',
       familyId: familyId,
       name: 'CPI: $description',
-      type: 'CPI',
-      currentAmount: totalAmount,
+      emoji: '🛒',
+      type: PiggyBankType.installment,
+      currentBalance: totalAmount,
       targetAmount: totalAmount,
-      createdAt: DateTime.now(),
-      color: '#FF9800',
-      icon: 'shopping_cart',
       isActive: true,
+      creditCardId: creditCardId,
+      color: '#FF9800',
     );
-    final createdCpi = await piggyBanksRepo.create(cpi);
+    await piggyBanksRepo.create(cpi);
 
-    // 2. Cria transacao-pai (compra original)
+    // 2. Cria transacao-pai (compra original parcelada)
     final parent = Transaction(
       id: '',
       familyId: familyId,
-      userId: userId,
-      type: 'expense',
-      amount: totalAmount,
-      description: description,
-      date: purchaseDate,
-      createdAt: DateTime.now(),
-      categoryId: categoryId,
+      accountId: accountId,
       creditCardId: creditCardId,
-      piggyBankId: createdCpi.id,
-      isInstallment: true,
-      totalInstallments: installments,
-      installmentNumber: 0,
+      categoryId: categoryId,
+      description: description,
+      amount: totalAmount,
+      type: TransactionType.expense,
+      date: purchaseDate,
+      isPaid: false,
+      recurrence: RecurrenceType.none,
+      installments: installments,
+      currentInstallment: 0,
+      createdBy: userId,
     );
     await transactionsRepo.create(parent);
 

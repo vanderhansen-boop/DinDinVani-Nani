@@ -36,7 +36,7 @@ class EvolutionChart extends StatelessWidget {
                       Text('R\$ ${d.balance.toStringAsFixed(0)}',
                           style: const TextStyle(fontSize: 10)),
                       const SizedBox(height: 4),
-                      Text(d.label, style: const TextStyle(fontSize: 10)),
+                      Text(d.month, style: const TextStyle(fontSize: 10)),
                     ],
                   );
                 },

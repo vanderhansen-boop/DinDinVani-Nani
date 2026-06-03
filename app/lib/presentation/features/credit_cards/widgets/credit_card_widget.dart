@@ -18,7 +18,7 @@ class CreditCardWidget extends StatelessWidget {
 
   Color get _cardColor {
     try {
-      final hex = card.color.replaceAll('#', '');
+      final hex = card.displayColor.replaceAll('#', '');
       return Color(int.parse('FF$hex', radix: 16));
     } catch (_) {
       return const Color(0xFF1565C0);
@@ -40,13 +40,13 @@ class CreditCardWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
-            colors: [_cardColor, _cardColor.withOpacity(0.75)],
+            colors: [_cardColor, _cardColor.withValues(alpha: 0.75)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: _cardColor.withOpacity(0.4),
+              color: _cardColor.withValues(alpha: 0.4),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),
@@ -59,12 +59,12 @@ class CreditCardWidget extends StatelessWidget {
               child: Container(width: 120, height: 120,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.08)))),
+                    color: Colors.white.withValues(alpha: 0.08)))),
             Positioned(bottom: -20, left: -20,
               child: Container(width: 100, height: 100,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.06)))),
+                    color: Colors.white.withValues(alpha: 0.06)))),
 
             Padding(
               padding: const EdgeInsets.all(20),
@@ -74,7 +74,7 @@ class CreditCardWidget extends StatelessWidget {
                   // Linha topo: emoji + nome + bandeira
                   Row(
                     children: [
-                      Text(card.emoji,
+                      Text(card.displayEmoji,
                           style: const TextStyle(fontSize: 24)),
                       const SizedBox(width: 8),
                       Expanded(
@@ -84,9 +84,9 @@ class CreditCardWidget extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16)),
                       ),
-                      Text(card.brandLabel,
+                      Text(card.brandLabel, // getter seguro // getter seguro
                           style: TextStyle(
-                              color: Colors.white.withOpacity(0.85),
+                              color: Colors.white.withValues(alpha: 0.85),
                               fontSize: 12,
                               fontWeight: FontWeight.w500)),
                     ],
@@ -94,9 +94,9 @@ class CreditCardWidget extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   // Numero mascarado
-                  Text('•••• •••• •••• ${card.lastFourDigits}',
+                  Text('•••• •••• •••• ${card.maskedDigits}',
                       style: TextStyle(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                           fontSize: 14,
                           letterSpacing: 2)),
 
@@ -111,7 +111,7 @@ class CreditCardWidget extends StatelessWidget {
                         children: [
                           Text('Fatura atual',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(0.7),
+                                  color: Colors.white.withValues(alpha: 0.7),
                                   fontSize: 10)),
                           Text(
                             invoice != null
@@ -129,17 +129,17 @@ class CreditCardWidget extends StatelessWidget {
                         children: [
                           Text('Cobertura CF',
                               style: TextStyle(
-                                  color: Colors.white.withOpacity(0.7),
+                                  color: Colors.white.withValues(alpha: 0.7),
                                   fontSize: 10)),
                           Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 3),
                             decoration: BoxDecoration(
                               color: isOk
-                                  ? Colors.green.withOpacity(0.85)
+                                  ? Colors.green.withValues(alpha: 0.85)
                                   : isWarn
-                                      ? Colors.orange.withOpacity(0.85)
-                                      : Colors.red.withOpacity(0.85),
+                                      ? Colors.orange.withValues(alpha: 0.85)
+                                      : Colors.red.withValues(alpha: 0.85),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -165,7 +165,7 @@ class CreditCardWidget extends StatelessWidget {
                     child: LinearProgressIndicator(
                       value: coverage.clamp(0.0, 1.0),
                       minHeight: 4,
-                      backgroundColor: Colors.white.withOpacity(0.25),
+                      backgroundColor: Colors.white.withValues(alpha: 0.25),
                       valueColor: AlwaysStoppedAnimation<Color>(
                           isOk ? Colors.greenAccent
                                : isWarn ? Colors.orangeAccent
@@ -181,3 +181,8 @@ class CreditCardWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
+

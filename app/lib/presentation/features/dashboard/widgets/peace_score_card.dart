@@ -36,7 +36,7 @@ class PeaceScoreCard extends StatelessWidget {
                     value: score / 100,
                     strokeWidth: 7,
                     color: _color,
-                    backgroundColor: _color.withOpacity(0.2),
+                    backgroundColor: _color.withValues(alpha: 0.2),
                   ),
                 ),
                 Text('$score', style: TextStyle(fontWeight: FontWeight.bold, color: _color, fontSize: 16)),

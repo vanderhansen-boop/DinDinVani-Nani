@@ -67,12 +67,12 @@ class _PhilosophyTile extends StatelessWidget {
     margin: const EdgeInsets.only(bottom: 8),
     decoration: BoxDecoration(
       color: value
-          ? color.withOpacity(0.06)
+          ? color.withValues(alpha: 0.06)
           : Colors.grey.shade50,
       borderRadius: BorderRadius.circular(14),
       border: Border.all(
         color: value
-            ? color.withOpacity(0.25)
+            ? color.withValues(alpha: 0.25)
             : Colors.grey.shade200,
       ),
     ),

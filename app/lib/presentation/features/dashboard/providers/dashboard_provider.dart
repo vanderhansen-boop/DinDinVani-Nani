@@ -1,5 +1,4 @@
 ﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../data/datasources/remote/dashboard_remote_datasource.dart';
 import '../../../../data/repositories/dashboard_repository_impl.dart';
 import '../../../../domain/entities/dashboard_summary.dart';
@@ -24,8 +23,10 @@ final getDashboardSummaryUseCaseProvider = Provider<GetDashboardSummary>(
 // Provider de estado do dashboard
 final dashboardSummaryProvider = FutureProvider.autoDispose<DashboardSummary>(
   (ref) async {
-    final familyId = Supabase.instance.client.auth.currentUser?.userMetadata?['family_id'] as String?
-        ?? '';
+    // CORRIGIDO: le do provider correto (tabela users via AuthAuthenticated),
+    // NAO mais de userMetadata (que vinha vazio -> uuid: "").
+    final familyId = ref.watch(currentFamilyIdProvider);
+
     if (familyId.isEmpty) {
       return const DashboardSummary(
         totalBalance:    0,
@@ -38,6 +39,7 @@ final dashboardSummaryProvider = FutureProvider.autoDispose<DashboardSummary>(
         monthlyEvolution:[],
       );
     }
+
     final useCase = ref.watch(getDashboardSummaryUseCaseProvider);
     return useCase.call(familyId);
   },

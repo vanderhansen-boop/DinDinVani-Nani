@@ -24,7 +24,7 @@ class InvoiceDetailSheet extends ConsumerWidget {
 
     final reservesAsync = ref.watch(invoiceReservesProvider(invoice.id));
 
-    final cfBalance = cfAsync.valueOrNull ?? 0.0;
+    final cfBalance = cfAsync.asData?.value ?? 0.0;
 
     return DraggableScrollableSheet(
       expand: false,

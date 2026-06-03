@@ -96,7 +96,7 @@ class _PiggyBankOperationSheetState
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: color.withOpacity(0.1),
+                  backgroundColor: color.withValues(alpha: 0.1),
                   child: Icon(
                       isDeposit ? Icons.add_rounded : Icons.remove_rounded,
                       color: color),

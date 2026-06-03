@@ -1,4 +1,4 @@
-import '../entities/budget.dart';
+﻿import '../entities/budget.dart';
 
 /// Use Case - Verifica alertas de orcamento
 /// Niveis: ok, warning (>=80%), danger (>=100%)
@@ -16,9 +16,9 @@ class CheckBudgetAlertsUseCase {
       }
     }
 
-    check('essential', budget.essentialSpent, budget.essentialBudget);
-    check('lifestyle', budget.lifestyleSpent, budget.lifestyleBudget);
-    check('savings', budget.savingsSpent, budget.savingsBudget);
+    check('essentials', budget.essentialsSpent, budget.essentialsLimit);
+    check('wants',      budget.wantsSpent,      budget.wantsLimit);
+    check('savings',    budget.savingsSpent,    budget.savingsLimit);
 
     return alerts;
   }

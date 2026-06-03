@@ -25,7 +25,7 @@ class InvoiceHistoryCard extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         leading: CircleAvatar(
-          backgroundColor: _statusColor(status).withOpacity(0.2),
+          backgroundColor: _statusColor(status).withValues(alpha: 0.2),
           child: Text(invoice.month.toString(),
               style: TextStyle(
                   color: _statusColor(status),

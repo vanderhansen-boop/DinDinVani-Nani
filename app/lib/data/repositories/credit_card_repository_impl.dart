@@ -45,6 +45,13 @@ class CreditCardRepositoryImpl implements CreditCardRepository {
   }
 
   @override
+  Future<List<Invoice>> getInvoiceHistory(String cardId, {int limit = 6}) async {
+    final models = await _datasource.getInvoices(cardId);
+    final list = models.map((m) => m.toEntity()).toList();
+    return list.take(limit).toList();
+  }
+
+  @override
   Future<double> getTotalOpenInvoices(String familyId) =>
       _datasource.getTotalOpenInvoices(familyId);
 
@@ -52,3 +59,5 @@ class CreditCardRepositoryImpl implements CreditCardRepository {
   Future<void> payInvoice(String invoiceId, double amount) =>
       _datasource.payInvoice(invoiceId, amount);
 }
+
+

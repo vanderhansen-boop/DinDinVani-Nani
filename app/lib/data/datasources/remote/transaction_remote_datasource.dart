@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../domain/entities/transaction.dart';
 import '../../models/transaction_model.dart';
 import '../../models/category_model.dart';
+import '../../../core/utils/family_guard.dart';
 
 abstract class TransactionRemoteDatasource {
   Future<List<TransactionModel>> getByMonth(String familyId, int year, int month);
@@ -27,6 +28,7 @@ class TransactionRemoteDatasourceImpl implements TransactionRemoteDatasource {
   @override
   Future<List<TransactionModel>> getByMonth(
       String familyId, int year, int month) async {
+    if (!isValidFamilyId(familyId)) return [];
     final start = DateTime(year, month, 1).toIso8601String();
     final end   = DateTime(year, month + 1, 0, 23, 59, 59).toIso8601String();
     final data  = await _client
@@ -48,6 +50,7 @@ class TransactionRemoteDatasourceImpl implements TransactionRemoteDatasource {
     TransactionType? type,
     String?          search,
   }) async {
+    if (!isValidFamilyId(familyId)) return [];
     var query = _client
         .from('transactions')
         .select()

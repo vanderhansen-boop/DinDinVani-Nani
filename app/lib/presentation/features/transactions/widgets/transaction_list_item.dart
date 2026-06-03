@@ -76,7 +76,7 @@ class TransactionListItem extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         leading: CircleAvatar(
-          backgroundColor: color.withOpacity(0.15),
+          backgroundColor: color.withValues(alpha: 0.15),
           child: Text(categoryIcon, style: const TextStyle(fontSize: 18)),
         ),
         title: Text(

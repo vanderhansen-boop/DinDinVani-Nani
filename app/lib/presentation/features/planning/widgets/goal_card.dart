@@ -60,7 +60,7 @@ class GoalCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 1),
                               decoration: BoxDecoration(
-                                color: _priorityColor.withOpacity(0.1),
+                                color: _priorityColor.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(goal.priorityLabel,

@@ -66,7 +66,7 @@ class PiggyBankHistorySheet extends ConsumerWidget {
                     final isIn = c.isDeposit;
                     return ListTile(
                       leading: CircleAvatar(
-                        backgroundColor: (isIn ? Colors.green : Colors.red).withOpacity(0.1),
+                        backgroundColor: (isIn ? Colors.green : Colors.red).withValues(alpha: 0.1),
                         child: Icon(
                           isIn ? Icons.arrow_downward_rounded : Icons.arrow_upward_rounded,
                           color: isIn ? Colors.green : Colors.red,

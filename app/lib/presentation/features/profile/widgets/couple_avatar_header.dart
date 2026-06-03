@@ -80,7 +80,7 @@ class CoupleAvatarHeader extends StatelessWidget {
                 : '${me.displayName} (aguardando parceiro)',
             style: TextStyle(
               fontSize: 13,
-              color: cs.onPrimaryContainer.withOpacity(0.75),
+              color: cs.onPrimaryContainer.withValues(alpha: 0.75),
             ),
           ),
         ],
@@ -103,7 +103,7 @@ class _AvatarBadge extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 40,
-              backgroundColor: cs.primary.withOpacity(0.15),
+              backgroundColor: cs.primary.withValues(alpha: 0.15),
               backgroundImage: profile.avatarUrl != null
                   ? NetworkImage(profile.avatarUrl!)
                   : null,
@@ -138,7 +138,7 @@ class _AvatarBadge extends StatelessWidget {
         Text(profile.role.toUpperCase(),
             style: TextStyle(
                 fontSize: 9,
-                color: cs.onPrimaryContainer.withOpacity(0.6),
+                color: cs.onPrimaryContainer.withValues(alpha: 0.6),
                 letterSpacing: 1)),
       ],
     );

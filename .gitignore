@@ -59,3 +59,7 @@ backups/
 **/.env.backup
 *.local.example
 MEMORIA_PROJETO.md.bak*
+_backup_*/
+_backup_fix*/
+*.vercel_token
+.vercel_token

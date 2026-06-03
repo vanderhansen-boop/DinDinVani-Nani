@@ -9,6 +9,7 @@ abstract class CreditCardRepository {
   Future<void>             deleteCard(String id);
   Future<Invoice?>         getCurrentInvoice(String cardId);
   Future<List<Invoice>>    getInvoices(String cardId);
+  Future<List<Invoice>>    getInvoiceHistory(String cardId, {int limit = 6});
   Future<double>           getTotalOpenInvoices(String familyId);
   Future<void>             payInvoice(String invoiceId, double amount);
 }

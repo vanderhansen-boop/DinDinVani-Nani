@@ -1,15 +1,8 @@
-import '../entities/budget.dart';
+﻿import '../entities/budget.dart';
 import '../entities/piggy_bank.dart';
 import '../entities/invoice.dart';
 
 /// Use Case - Score de Paz Financeira (0 a 100)
-/// Indicador composto que mede a saude financeira do casal.
-/// Componentes:
-/// - 30 pts: Cobertura da CF sobre faturas em aberto
-/// - 25 pts: Reserva de Emergencia (CE) >= 3x despesas mensais
-/// - 20 pts: Aderencia ao orcamento (gasto <= orcado)
-/// - 15 pts: Progresso nas metas ativas
-/// - 10 pts: Renda do mes anterior cobre orcamento atual (OD)
 class CalculateScorePazFinanceiraUseCase {
   double call({
     required List<PiggyBank> piggyBanks,
@@ -24,7 +17,7 @@ class CalculateScorePazFinanceiraUseCase {
     // 1. Cobertura CF (30 pts)
     final cfs = piggyBanks.where((p) => p.isCaixinhaFatura).toList();
     final totalCf = cfs.fold<double>(0, (s, p) => s + p.currentBalance);
-    final totalOpen = openInvoices.fold<double>(0, (s, i) => s + i.remainingAmount);
+    final totalOpen = openInvoices.fold<double>(0, (s, i) => s + i.remaining);
     if (totalOpen == 0) {
       score += 30;
     } else {
@@ -41,8 +34,8 @@ class CalculateScorePazFinanceiraUseCase {
     }
 
     // 3. Aderencia ao orcamento (20 pts)
-    if (currentBudget != null && currentBudget.totalBudget > 0) {
-      final overrun = currentBudget.totalSpent / currentBudget.totalBudget;
+    if (currentBudget != null && currentBudget.totalLimit > 0) {
+      final overrun = currentBudget.totalSpent / currentBudget.totalLimit;
       if (overrun <= 1.0) {
         score += 20;
       } else if (overrun <= 1.2) {

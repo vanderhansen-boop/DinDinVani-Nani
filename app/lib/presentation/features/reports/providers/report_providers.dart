@@ -1,4 +1,5 @@
 ﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import '../../../../core/providers/supabase_provider.dart';
 import '../../../../domain/entities/monthly_summary.dart';
 import '../../../../domain/entities/cashflow_projection.dart';
@@ -152,6 +153,7 @@ class ExportReportService {
 }
 
 final exportReportProvider = Provider<ExportReportService>((ref) {
-  final summaries = ref.watch(monthlySummariesProvider).valueOrNull ?? [];
+  final summaries = ref.watch(monthlySummariesProvider).asData?.value ?? [];
   return ExportReportService(summaries);
 });
+

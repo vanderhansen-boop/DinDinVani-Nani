@@ -27,6 +27,23 @@
     this.piggyBankId,
   });
 
+  // ── Getters de apresentacao ─────────────────────────────────
+  /// Cor segura (sempre com #), fallback azul
+  String get displayColor => color ?? '#1565C0';
+
+  /// Emoji seguro
+  String get displayEmoji => emoji ?? '💳';
+
+  /// Ultimos 4 digitos seguros
+  String get maskedDigits => lastFourDigits ?? '••••';
+
+  /// Rotulo da bandeira capitalizado
+  String get brandLabel {
+    final b = brand;
+    if (b == null || b.isEmpty) return 'CARD';
+    return b.toUpperCase();
+  }
+
   CreditCard copyWith({
     String?  id,
     String?  familyId,
